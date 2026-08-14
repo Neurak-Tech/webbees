@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aryan-lohia.github.io/webbees/sitemap.xml

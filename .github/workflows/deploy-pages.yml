@@ -1,0 +1,68 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAGES: "true"
+      VITE_SITE_URL: https://aryan-lohia.github.io/webbees
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Prepare Pages artifact
+        run: |
+          set -euo pipefail
+          if [ -d dist/client ]; then
+            PUBLISH_DIR=dist/client
+          elif [ -d dist ]; then
+            PUBLISH_DIR=dist
+          elif [ -d .output/public ]; then
+            PUBLISH_DIR=.output/public
+          else
+            echo "Could not find static output directory" >&2
+            find . -maxdepth 3 -type d | head -80
+            exit 1
+          fi
+          if [ -f "$PUBLISH_DIR/index.html" ]; then
+            cp "$PUBLISH_DIR/index.html" "$PUBLISH_DIR/404.html"
+          elif [ -f "$PUBLISH_DIR/_shell.html" ]; then
+            cp "$PUBLISH_DIR/_shell.html" "$PUBLISH_DIR/index.html"
+            cp "$PUBLISH_DIR/_shell.html" "$PUBLISH_DIR/404.html"
+          else
+            echo "No HTML shell found in $PUBLISH_DIR" >&2
+            ls -la "$PUBLISH_DIR"
+            exit 1
+          fi
+          echo "publish_dir=$PUBLISH_DIR" >> "$GITHUB_ENV"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.publish_dir }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
