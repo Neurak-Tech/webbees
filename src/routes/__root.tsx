@@ -21,6 +21,7 @@ import {
   SITE_ORIGIN,
   SITE_TAGLINE,
   SITE_TITLE,
+  absoluteUrl,
 } from "../lib/seo";
 
 function NotFoundComponent() {
@@ -87,7 +88,7 @@ const jsonLd = JSON.stringify({
   legalName: "Grovix Ventures Pvt Ltd",
   description: `${SITE_NAME}, ${LEGAL_ENTITY}. ${SITE_TAGLINE}.`,
   url: SITE_ORIGIN,
-  logo: OG_IMAGE,
+  logo: absoluteUrl("/icon-512.png"),
   address: {
     "@type": "PostalAddress",
     addressLocality: "Siliguri",
@@ -131,8 +132,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "canonical", href: SITE_ORIGIN },
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.ico`, type: "image/x-icon" },
-      { rel: "apple-touch-icon", href: OG_IMAGE },
+      { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.svg`, type: "image/svg+xml" },
+      { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.ico`, sizes: "any" },
+      { rel: "apple-touch-icon", href: `${import.meta.env.BASE_URL}apple-touch-icon.png` },
+      { rel: "manifest", href: `${import.meta.env.BASE_URL}site.webmanifest` },
     ],
     scripts: [
       {
