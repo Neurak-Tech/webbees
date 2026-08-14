@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAGES: "true"
-      VITE_SITE_URL: https://aryan-lohia.github.io/webbees
+      VITE_SITE_URL: https://neurak-tech.github.io/webbees
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aryan-lohia.github.io/webbees/sitemap.xml
+Sitemap: https://neurak-tech.github.io/webbees/sitemap.xml
