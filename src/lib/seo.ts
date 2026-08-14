@@ -9,7 +9,7 @@ export const OG_DESCRIPTION =
   "Local Siliguri web team from Grovix Ventures Pvt Ltd. 200+ live projects. Mini site ₹4,999, multi-page ₹9,999.";
 export const SITE_LOCALE = "en_IN";
 export const SITE_ORIGIN = String(
-  import.meta.env.VITE_SITE_URL ?? "https://neurak-tech.github.io/webbees",
+  import.meta.env.VITE_SITE_URL ?? "https://webbees.theaihive.store",
 ).replace(/\/$/, "");
 
 export function absoluteUrl(path: string) {

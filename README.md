@@ -11,6 +11,6 @@ npm run dev
 
 ## Deploy
 
-Push to `main` in [Neurak-Tech/webbees](https://github.com/Neurak-Tech/webbees). GitHub Actions publishes to GitHub Pages at https://neurak-tech.github.io/webbees/
+Push to `main` in [Neurak-Tech/webbees](https://github.com/Neurak-Tech/webbees). GitHub Actions publishes to GitHub Pages at https://webbees.theaihive.store/
 
 You can also run the workflow manually: **Actions → Deploy GitHub Pages → Run workflow**.

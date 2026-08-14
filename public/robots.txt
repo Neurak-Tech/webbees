@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://neurak-tech.github.io/webbees/sitemap.xml
+Sitemap: https://webbees.theaihive.store/sitemap.xml

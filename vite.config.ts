@@ -4,7 +4,7 @@ import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 
-const repoBase = process.env.GITHUB_PAGES === "true" ? "/webbees/" : "/";
+const repoBase = "/";
 
 export default defineConfig({
   base: repoBase,
